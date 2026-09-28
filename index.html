@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tidal Geometries — Preview</title>
+<style>
+  :root { --ground:#060b14; --bone:#e9e3d3; --cyan:#22d3ee; --violet:#a78bfa; --teal:#2dd4bf; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ground); color:var(--bone);
+         font-family: Georgia, 'Times New Roman', serif; line-height:1.5; }
+  header { max-width:1100px; margin:0 auto; padding:56px 24px 8px; }
+  h1 { font-size: clamp(28px, 5vw, 44px); letter-spacing:.14em; margin:0 0 6px;
+       text-transform:uppercase; font-weight:normal; }
+  h1 .tide { color: var(--cyan); }
+  .sub { color:#9aa7b8; font-size:15px; letter-spacing:.04em; }
+  section { max-width:1100px; margin:0 auto; padding:28px 24px; }
+  h2 { font-weight:normal; letter-spacing:.18em; text-transform:uppercase;
+       font-size:15px; color:var(--cyan); border-bottom:1px solid #1b2740;
+       padding-bottom:10px; margin:0 0 20px; }
+  h2 .n { color:#5b6b82; margin-right:10px; }
+  figure { margin:0; }
+  figcaption { padding:10px 4px 0; font-size:14px; color:#9aa7b8; }
+  figcaption b { color:var(--bone); font-weight:normal; }
+  .hero img { width:100%; max-width:720px; display:block; border:1px solid #1b2740; }
+  .trio { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .trio img { width:100%; display:block; border:1px solid #1b2740; }
+  .grid6 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .grid6 img { width:100%; display:block; border:1px solid #1b2740; }
+  .badge { display:inline-block; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+            border:1px solid #2a3a55; border-radius:20px; padding:2px 10px; margin-left:8px; color:var(--teal);}
+  footer { max-width:1100px; margin:0 auto; padding:24px; color:#5b6b82; font-size:13px;
+           border-top:1px solid #1b2740; }
+  @media (max-width:700px){ .trio,.grid6{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Tidal <span class="tide">Geometries</span></h1>
+  <div class="sub">Preview &mdash; a sibling series to <i>Seeded Geometries</i>.
+  Concentric ring lattices welded to the square grid, drawn in stippled bone linework
+  on abyssal ground. 150 tokens &middot; 0.001 ETH &middot; 10% royalties.</div>
+</header>
+
+<section>
+  <h2><span class="n">01</span>Locked geometry</h2>
+  <figure class="hero">
+    <img src="stills/token-2c-locked-standard.png" alt="Tidal Geometries — two ring centers, standard density">
+    <figcaption><b>Two centers, nine rings.</b> Ring foci sit exactly on square-grid
+    vertices; every ring/spoke/grid joint is a single fused vertex. Layers at
+    75&deg; / 105&deg; / 135&deg;, 1.578&times; zoom, expanding-ring wave on an
+    8-second loop with 2 seconds of exact rest.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2><span class="n">02</span>Dot grid &mdash; byte 5</h2>
+  <div class="trio">
+    <figure>
+      <img src="stills/token-dotgrid-triangle.png" alt="Dot grid — triangle">
+      <figcaption><b>Triangle</b><span class="badge">40 &mdash; favored</span><br>
+      Accent dots on module third-points, in the triangulated language of v1.</figcaption>
+    </figure>
+    <figure>
+      <img src="stills/token-dotgrid-square.png" alt="Dot grid — square">
+      <figcaption><b>Square</b><span class="badge">35</span><br>
+      Accent dots on the linear grid's square intersections &mdash; the original placement.</figcaption>
+    </figure>
+    <figure>
+      <img src="stills/token-dotgrid-circle.png" alt="Dot grid — circle">
+      <figcaption><b>Circle</b><span class="badge">25</span><br>
+      Accent dots on ring/spoke crossings of the ring lattice.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">03</span>Across the series</h2>
+  <div class="grid6">
+    <figure><img src="stills/token-2c-1w-sparse.png" alt="Sparse, single wave"><figcaption><b>Sparse</b> &middot; single wave train &middot; 5 rings</figcaption></figure>
+    <figure><img src="stills/token-2c-1w-standard.png" alt="Standard, single wave"><figcaption><b>Standard</b> &middot; single wave train &middot; 9 rings</figcaption></figure>
+    <figure><img src="stills/token-2c-1w-dense.png" alt="Dense, single wave"><figcaption><b>Dense</b> &middot; single wave train &middot; 13 rings</figcaption></figure>
+    <figure><img src="stills/token-2c-2w-sparse.png" alt="Sparse, double wave"><figcaption><b>Sparse</b> &middot; double wave train</figcaption></figure>
+    <figure><img src="stills/token-2c-2w-standard.png" alt="Standard, double wave"><figcaption><b>Standard</b> &middot; double wave train</figcaption></figure>
+    <figure><img src="stills/token-2c-3w-standard.png" alt="Standard, triple wave"><figcaption><b>Standard</b> &middot; triple wave train</figcaption></figure>
+  </div>
+</section>
+
+<footer>
+  Tidal Geometries &mdash; engine preview. Renders are deterministic stand-ins;
+  production tokens derive their seeds on-chain at mint.
+</footer>
+</body>
+</html>
