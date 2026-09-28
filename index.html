@@ -3,92 +3,112 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tidal Geometries — Preview</title>
+<title>Tidal Geometries — hash-driven generative prototype</title>
 <style>
-  :root { --ground:#060b14; --bone:#e9e3d3; --cyan:#22d3ee; --violet:#a78bfa; --teal:#2dd4bf; }
+  :root { color-scheme: dark; }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--ground); color:var(--bone);
-         font-family: Georgia, 'Times New Roman', serif; line-height:1.5; }
-  header { max-width:1100px; margin:0 auto; padding:56px 24px 8px; }
-  h1 { font-size: clamp(28px, 5vw, 44px); letter-spacing:.14em; margin:0 0 6px;
-       text-transform:uppercase; font-weight:normal; }
-  h1 .tide { color: var(--cyan); }
-  .sub { color:#9aa7b8; font-size:15px; letter-spacing:.04em; }
-  section { max-width:1100px; margin:0 auto; padding:28px 24px; }
-  h2 { font-weight:normal; letter-spacing:.18em; text-transform:uppercase;
-       font-size:15px; color:var(--cyan); border-bottom:1px solid #1b2740;
-       padding-bottom:10px; margin:0 0 20px; }
-  h2 .n { color:#5b6b82; margin-right:10px; }
-  figure { margin:0; }
-  figcaption { padding:10px 4px 0; font-size:14px; color:#9aa7b8; }
-  figcaption b { color:var(--bone); font-weight:normal; }
-  .hero img { width:100%; max-width:720px; display:block; border:1px solid #1b2740; }
-  .trio { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .trio img { width:100%; display:block; border:1px solid #1b2740; }
-  .grid6 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .grid6 img { width:100%; display:block; border:1px solid #1b2740; }
-  .badge { display:inline-block; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
-            border:1px solid #2a3a55; border-radius:20px; padding:2px 10px; margin-left:8px; color:var(--teal);}
-  footer { max-width:1100px; margin:0 auto; padding:24px; color:#5b6b82; font-size:13px;
-           border-top:1px solid #1b2740; }
-  @media (max-width:700px){ .trio,.grid6{ grid-template-columns:1fr; } }
+  body {
+    margin: 0; padding: 32px 20px 64px;
+    background: #101114; color: #e8e4d8;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  header { max-width: 1100px; margin: 0 auto 8px; }
+  h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: 0.5px; }
+  header p { color: #9a958a; max-width: 70ch; line-height: 1.5; margin: 6px 0; }
+  header code, figcaption code { color: #c9a227; font-size: 12px; }
+  .controls { max-width: 1100px; margin: 20px auto; display: flex; gap: 16px; align-items: center; }
+  button {
+    font-family: inherit; font-size: 15px; cursor: pointer;
+    background: #c9a227; color: #101114; border: none; border-radius: 4px;
+    padding: 10px 22px;
+  }
+  button:hover { background: #dbb845; }
+  button:disabled { background: #5a554a; color: #101114; cursor: default; }
+  .note { color: #9a958a; font-size: 13px; margin: 0; }
+  .hero { max-width: 1100px; margin: 0 auto 8px; }
+  .hero video { width: 100%; max-width: 720px; height: auto; display: block; border-radius: 2px; }
+  .hero figcaption { max-width: 720px; }
+  .gallery {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  figure { margin: 0; }
+  .gallery img { width: 100%; height: auto; display: block; border-radius: 2px; }
+  figcaption { font-size: 13px; color: #b9b3a4; line-height: 1.65; margin-top: 10px; }
+  figcaption strong { color: #e8e4d8; }
+  figcaption .rarity { color: #c9a227; }
+  footer { max-width: 1100px; margin: 40px auto 0; color: #6f6a5e; font-size: 13px; }
 </style>
 </head>
 <body>
 <header>
-  <h1>Tidal <span class="tide">Geometries</span></h1>
-  <div class="sub">Preview &mdash; a sibling series to <i>Seeded Geometries</i>.
-  Concentric ring lattices welded to the square grid, drawn in stippled bone linework
-  on abyssal ground. 150 tokens &middot; 0.001 ETH &middot; 10% royalties.</div>
+  <h1>Tidal Geometries</h1>
+  <p>
+    A sibling series to Seeded Geometries: concentric ring lattices welded exactly
+    to the square grid. Each piece is rendered from a single 64-character token
+    hash: fixed slices of the hash choose the coarse traits (palette, density,
+    dot grid, wave trains), while domain-separated sub-seeds feed independent
+    random streams for all micro-detail. Same hash → same piece, forever,
+    anywhere. No two mints share a seed.
+  </p>
+  <p>
+    Two ring centers per piece; every ring/spoke/grid joint is a single fused
+    vertex. Stippled bone linework on absolute black, washed in the token’s
+    hue, with 42 neon accent dots on the cool bioluminescent spectrum. The
+    8-second loop runs 2 seconds of rest, a 4-second expanding-ring wave, and
+    2 seconds of rest.
+  </p>
 </header>
-
-<section>
-  <h2><span class="n">01</span>Locked geometry</h2>
-  <figure class="hero">
-    <img src="stills/token-2c-locked-standard.png" alt="Tidal Geometries — two ring centers, standard density">
-    <figcaption><b>Two centers, nine rings.</b> Ring foci sit exactly on square-grid
-    vertices; every ring/spoke/grid joint is a single fused vertex. Layers at
-    75&deg; / 105&deg; / 135&deg;, 1.578&times; zoom, expanding-ring wave on an
-    8-second loop with 2 seconds of exact rest.</figcaption>
+<div class="hero">
+  <figure>
+    <video src="stills/token-1-motion-v4-720.mp4" autoplay muted loop playsinline></video>
+    <figcaption><strong>Token #1</strong> — the full 8-second seamless motion loop.</figcaption>
   </figure>
-</section>
-
-<section>
-  <h2><span class="n">02</span>Dot grid &mdash; byte 5</h2>
-  <div class="trio">
-    <figure>
-      <img src="stills/token-dotgrid-triangle.png" alt="Dot grid — triangle">
-      <figcaption><b>Triangle</b><span class="badge">40 &mdash; favored</span><br>
-      Accent dots on module third-points, in the triangulated language of v1.</figcaption>
-    </figure>
-    <figure>
-      <img src="stills/token-dotgrid-square.png" alt="Dot grid — square">
-      <figcaption><b>Square</b><span class="badge">35</span><br>
-      Accent dots on the linear grid's square intersections &mdash; the original placement.</figcaption>
-    </figure>
-    <figure>
-      <img src="stills/token-dotgrid-circle.png" alt="Dot grid — circle">
-      <figcaption><b>Circle</b><span class="badge">25</span><br>
-      Accent dots on ring/spoke crossings of the ring lattice.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section>
-  <h2><span class="n">03</span>Across the series</h2>
-  <div class="grid6">
-    <figure><img src="stills/token-2c-1w-sparse.png" alt="Sparse, single wave"><figcaption><b>Sparse</b> &middot; single wave train &middot; 5 rings</figcaption></figure>
-    <figure><img src="stills/token-2c-1w-standard.png" alt="Standard, single wave"><figcaption><b>Standard</b> &middot; single wave train &middot; 9 rings</figcaption></figure>
-    <figure><img src="stills/token-2c-1w-dense.png" alt="Dense, single wave"><figcaption><b>Dense</b> &middot; single wave train &middot; 13 rings</figcaption></figure>
-    <figure><img src="stills/token-2c-2w-sparse.png" alt="Sparse, double wave"><figcaption><b>Sparse</b> &middot; double wave train</figcaption></figure>
-    <figure><img src="stills/token-2c-2w-standard.png" alt="Standard, double wave"><figcaption><b>Standard</b> &middot; double wave train</figcaption></figure>
-    <figure><img src="stills/token-2c-3w-standard.png" alt="Standard, triple wave"><figcaption><b>Standard</b> &middot; triple wave train</figcaption></figure>
-  </div>
-</section>
-
+</div>
+<div class="controls">
+  <button id="mint">Simulate mint</button>
+  <p class="note">Demo hashes are deterministic stand-ins. A production deployment
+  derives the token hash from the mint blockhash instead. Cards below are still
+  frames; the motion loop above is the live system.</p>
+</div>
+<div id="gallery" class="gallery"></div>
 <footer>
-  Tidal Geometries &mdash; engine preview. Renders are deterministic stand-ins;
+  Tidal Geometries — engine preview. Renders are deterministic stand-ins;
   production tokens derive their seeds on-chain at mint.
 </footer>
+<script>
+var CARDS = [{"i":0,"hash":"87d29c23dba606496c688a80701f02d33fe065912aeb08ce4391bbdee77e21a1","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":17.86},{"i":1,"hash":"2a7657b5c7238b370e49287bd1b2323042fafb53fb0d1e88301c49c0ed913c51","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Square"},{"trait_type":"Accent Hue","value":"Violet"}],"rarity":19.42},{"i":2,"hash":"c3cd13f291ed3e6cb4acf02b32fa2a07b2ebefcbcc76802fdbd5b692e4243d31","feats":[{"trait_type":"Grid System","value":"Linear Grid ⊕ Ring Field"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Cyan + Teal"}],"rarity":64.41},{"i":3,"hash":"8c320d11dc3858121bed877b7a9e9c71d03d223b19a221056ee3229e7195967f","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Square"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":18.12},{"i":4,"hash":"212cdf3dc06e6328d9a06f3d12617fca957962df1a4eac30cb06f80e55449e89","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Dense"},{"trait_type":"Rings","value":"13"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":27.21},{"i":5,"hash":"76b4b5d62ee43ee5dd6d395ce7c81db4c9cbd1b246d6a5529155ef1559bd93da","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Abyss + Teal"}],"rarity":38.66},{"i":6,"hash":"c0ac1a3fe5c3e08b3af6400405fca9630ecde390caf6ea11a13b3e371f030b39","feats":[{"trait_type":"Grid System","value":"Linear Grid ⊕ Ring Field"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Double"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":20.94},{"i":7,"hash":"3034285ae3539ed39c4f430c20bdde57a3a84c9729c972e011960062fe25e35f","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Double"},{"trait_type":"Dot Grid","value":"Square"},{"trait_type":"Accent Hue","value":"Teal"}],"rarity":32.87},{"i":8,"hash":"fee94c43206266f22510e2e61f757f566a8fa5a4167bffe6e35e05c63eace93c","feats":[{"trait_type":"Grid System","value":"Linear Grid ⊕ Ring Field"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":18.93},{"i":9,"hash":"7270bce7091cca71fb03017414eed5b3c07e1cb25ab41cb2800997d8e29f3f4b","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Double"},{"trait_type":"Dot Grid","value":"Square"},{"trait_type":"Accent Hue","value":"Abyss + Cyan + Teal"}],"rarity":33.08},{"i":10,"hash":"437333f7ded6498c3a9b275d148ae4dbed4a14079d22739e051e865389d35bb2","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Teal + Violet"}],"rarity":63.35},{"i":11,"hash":"154d18a8c49097cb00d7cbdf287070b67bbe10a46cb78cac283d386ea48bd450","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Violet"}],"rarity":20.54},{"i":12,"hash":"e140a8a986e774828859f30a3664419f035277098a4df97b8c1f08f4637b6b39","feats":[{"trait_type":"Grid System","value":"Linear Grid ⊕ Ring Field"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Cyan"}],"rarity":26.82},{"i":13,"hash":"b6d0ed69b3134e39e3b902528053144081e898f427337911457e104d88339e51","feats":[{"trait_type":"Grid System","value":"Linear Grid ⊕ Ring Field"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Dense"},{"trait_type":"Rings","value":"13"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Square"},{"trait_type":"Accent Hue","value":"Violet"}],"rarity":29.84},{"i":14,"hash":"b8352695f99a95d887424bfa9b17228e185932c7f31bc5d8b2f5a2214b6ed369","feats":[{"trait_type":"Grid System","value":"Linear Grid ⊕ Ring Field"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Teal"}],"rarity":32.27},{"i":15,"hash":"969390ee2065cd25d18d93d5c563e12d8086a6d1c62136fcf874d872ec3777c1","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Double"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Abyss + Teal"}],"rarity":41.51},{"i":16,"hash":"0efbc48f9e583e76809b4bfa3cc696709a4d02c5b22ffd331c37453e4c633ddd","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Dense"},{"trait_type":"Rings","value":"13"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Square"},{"trait_type":"Accent Hue","value":"Violet"}],"rarity":28.77},{"i":17,"hash":"116d04ec388bc807fa4f22cfc91b40d2bc5d4e920f7f71a87bff1aae6871b6dc","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Double"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Abyss + Cyan"}],"rarity":34.2},{"i":18,"hash":"431c68030eb81e4aa86b98ec0f1b8d192ff15cfe92247ed625c0f6a289ce97f4","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":17.86},{"i":19,"hash":"7c20525d97e77dd0c8b03128a983f4a38e78b06bb0689d9513f59c0b14bca0b5","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Cyan"}],"rarity":25.76},{"i":20,"hash":"4d599eef4a5b24b908a722254897f85088df2158fe8d236c14aee5b8a6b9f784","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Triangle"},{"trait_type":"Accent Hue","value":"Abyss + Cyan + Teal"}],"rarity":31.42},{"i":21,"hash":"36c4524464ec280681df09fd077dee04f514020f5b66fe3721890aad27a5fb22","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Standard"},{"trait_type":"Rings","value":"9"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":17.1},{"i":22,"hash":"86f6376e35fe8106db90e5854468a1ec4e76495429a81c9ffdf5a3e804d82808","feats":[{"trait_type":"Grid System","value":"Ring Field ⊕ Linear Grid"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Circle"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":17.11},{"i":23,"hash":"ceef0fb60844103df1ace6be6c068e0fcc06bf257c8ad62abd4381f523f4b284","feats":[{"trait_type":"Grid System","value":"Linear Grid ⊕ Ring Field"},{"trait_type":"Palette","value":"Abyssal Bioluminescent"},{"trait_type":"Density","value":"Sparse"},{"trait_type":"Rings","value":"5"},{"trait_type":"Wave Trains","value":"Single"},{"trait_type":"Dot Grid","value":"Square"},{"trait_type":"Accent Hue","value":"Abyss"}],"rarity":18.51}];
+(function () {
+  "use strict";
+  var gallery = document.getElementById("gallery");
+  var minted = 0;
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function addPiece(i) {
+    var c = CARDS[i];
+    var card = document.createElement("figure");
+    var img = document.createElement("img");
+    img.src = "stills/t" + pad(i) + ".png";
+    img.alt = "Tidal Geometries token #" + i;
+    img.loading = "lazy";
+    var cap = document.createElement("figcaption");
+    var html = "<strong>Token #" + i + "</strong> <code>" + c.hash.slice(0, 10) + "&hellip;</code><br>";
+    c.feats.forEach(function (f) { html += f.trait_type + ": " + f.value + "<br>"; });
+    html += "Neon field: 42 dots · lime → magenta<br>";
+    html += "<span class=\"rarity\">Rarity score: " + c.rarity.toFixed(2) + "</span>";
+    cap.innerHTML = html;
+    card.appendChild(img);
+    card.appendChild(cap);
+    gallery.appendChild(card);
+  }
+  for (var i = 0; i < 12; i++) addPiece(minted++);
+  var btn = document.getElementById("mint");
+  btn.addEventListener("click", function () {
+    if (minted >= CARDS.length) return;
+    addPiece(minted++);
+    if (minted >= CARDS.length) { btn.disabled = true; btn.textContent = "24 of 24 minted"; }
+  });
+})();
+</script>
 </body>
 </html>
