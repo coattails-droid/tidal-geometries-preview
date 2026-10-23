@@ -40,6 +40,13 @@
   figure { margin: 0; }
   .gallery video { width: 100%; aspect-ratio: 1; display: block; background: #000;
                    border: 1px solid #3a362c; }
+  .playwrap { position: relative; }
+  .playwrap img { width: 100%; aspect-ratio: 1; display: block; background: #000;
+                   border: 1px solid #3a362c; }
+  .playbtn { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+    background: rgba(13,7,8,.78); color: #ffc46e; border: 1px solid #ffc46e;
+    padding: 8px 18px; font: inherit; font-size: 13px; letter-spacing: .14em; cursor: pointer; }
+  .playbtn:hover { background: #ffc46e; color: #14100a; }
   figcaption { font-size: 14px; color: #9a937f; line-height: 1.8; letter-spacing: 0.04em;
                margin-top: 10px; }
   figcaption strong { color: #e8e2d4; }
@@ -64,8 +71,8 @@
 </header>
 <div class="controls">
 <p class="note">Demo hashes are deterministic stand-ins. A production deployment
-  derives the token hash from the mint blockhash instead. Cards below are live
-  looping previews of each token's full 8-second motion.</p>
+  derives the token hash from the mint blockhash instead. Tap a card to play
+  each token's full 8-second motion loop.</p>
 </div>
 <div id="gallery" class="gallery"></div>
 <footer>
@@ -81,19 +88,35 @@ var CARDS = [{"i":0,"hash":"87d29c23dba606496c688a80701f02d33fe065912aeb08ce4391
   function addPiece(i) {
     var c = CARDS[i];
     var card = document.createElement("figure");
-    var vid = document.createElement("video");
-    vid.src = "stills/preview-live/t" + pad(i) + "-720.mp4";
-    vid.poster = "stills/t" + pad(i) + "-360.webp";
-    vid.autoplay = true; vid.muted = true; vid.loop = true;
-    vid.playsInline = true; vid.preload = "metadata";
-    vid.setAttribute("aria-label", "Tidal Geometries token #" + i + " motion loop");
+    var wrap = document.createElement("div");
+    wrap.className = "playwrap";
+    var img = document.createElement("img");
+    img.src = "stills/t" + pad(i) + "-360.webp";
+    img.alt = "Tidal Geometries token #" + i;
+    img.width = 360; img.height = 360;
+    if (i > 0) img.loading = "lazy";
+    var btn = document.createElement("button");
+    btn.className = "playbtn";
+    btn.textContent = "\u25B6 PLAY LOOP";
+    btn.setAttribute("aria-label", "Play Tidal Geometries token #" + i + " motion loop");
+    btn.addEventListener("click", function () {
+      var vid = document.createElement("video");
+      vid.src = "stills/preview-live/t" + pad(i) + "-720.mp4";
+      vid.poster = img.src;
+      vid.muted = true; vid.loop = true; vid.playsInline = true;
+      wrap.innerHTML = "";
+      wrap.appendChild(vid);
+      vid.play();
+    });
+    wrap.appendChild(img);
+    wrap.appendChild(btn);
     var cap = document.createElement("figcaption");
     var html = "<strong>Token #" + i + "</strong> <code>" + c.hash.slice(0, 10) + "&hellip;</code><br>";
     c.feats.forEach(function (f) { html += f.trait_type + ": " + f.value + "<br>"; });
     html += "Neon field: 99 hash-colored dots<br>";
     html += "<span class=\"rarity\">Rarity score: " + c.rarity.toFixed(2) + "</span>";
     cap.innerHTML = html;
-    card.appendChild(vid);
+    card.appendChild(wrap);
     card.appendChild(cap);
     gallery.appendChild(card);
   }
