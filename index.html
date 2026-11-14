@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tidal Geometries — hash-driven generative prototype</title>
+<title>Tidal Geometries - Preview</title>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -93,22 +93,21 @@ var CARDS = [{"i":0,"hash":"87d29c23dba606496c688a80701f02d33fe065912aeb08ce4391
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   function addPiece(i) {
     var c = CARDS[i];
-    var id = c.i;
     var card = document.createElement("figure");
     var wrap = document.createElement("div");
     wrap.className = "playwrap";
     var img = document.createElement("img");
-    img.src = "stills/t" + pad(id) + "-360.webp";
-    img.alt = "Tidal Geometries token #" + id;
+    img.src = "stills/t" + pad(i) + "-360.webp";
+    img.alt = "Tidal Geometries token #" + i;
     img.width = 360; img.height = 360;
     if (i > 0) img.loading = "lazy";
     var btn = document.createElement("button");
     btn.className = "playbtn";
     btn.textContent = "\u25B6 PLAY LOOP";
-    btn.setAttribute("aria-label", "Play Tidal Geometries token #" + id + " motion loop");
+    btn.setAttribute("aria-label", "Play Tidal Geometries token #" + i + " motion loop");
     btn.addEventListener("click", function () {
       var vid = document.createElement("video");
-      vid.src = "stills/preview-live/t" + pad(id) + "-720.mp4";
+      vid.src = "stills/preview-live/t" + pad(i) + "-720.mp4";
       vid.poster = img.src;
       vid.muted = true; vid.loop = true; vid.playsInline = true;
       wrap.innerHTML = "";
@@ -118,7 +117,7 @@ var CARDS = [{"i":0,"hash":"87d29c23dba606496c688a80701f02d33fe065912aeb08ce4391
     wrap.appendChild(img);
     wrap.appendChild(btn);
     var cap = document.createElement("figcaption");
-    var html = "<strong>Token #" + id + "</strong> <code>" + c.hash.slice(0, 10) + "&hellip;</code><br>";
+    var html = "<strong>Token #" + i + "</strong> <code>" + c.hash.slice(0, 10) + "&hellip;</code><br>";
     c.feats.forEach(function (f) { html += f.trait_type + ": " + f.value + "<br>"; });
     html += "Neon field: 99 hash-colored dots<br>";
     html += "<span class=\"rarity\">Rarity score: " + c.rarity.toFixed(2) + "</span>";
