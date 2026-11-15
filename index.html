@@ -169,6 +169,15 @@ var CARDS = [{"i":0,"hash":"87d29c23dba606496c688a80701f02d33fe065912aeb08ce4391
       vid.src = "stills/preview-live/t" + pad(id) + "-720.mp4";
       vid.poster = img.src;
       vid.muted = true; vid.loop = true; vid.playsInline = true;
+      vid.style.cursor = "pointer";
+      vid.title = "Click to stop";
+      vid.setAttribute("aria-label", "Stop Tidal Geometries token #" + id + " motion loop");
+      vid.addEventListener("click", function () {
+        vid.pause();
+        wrap.innerHTML = "";
+        wrap.appendChild(img);
+        wrap.appendChild(btn);
+      });
       wrap.innerHTML = "";
       wrap.appendChild(vid);
       vid.play();
