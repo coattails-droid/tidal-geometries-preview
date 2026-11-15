@@ -72,7 +72,7 @@
   .gallery video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000;
                    border: 1px solid var(--line); }
   .playwrap { position: relative; aspect-ratio: 1; }
-  .playwrap img { width: 100%; height: 100%; object-fit: cover; display: block; background: #000;
+  .playwrap img, .playwrap iframe { width: 100%; height: 100%; object-fit: cover; display: block; background: #000;
                    border: 1px solid var(--line); }
   .playbtn { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
     background: rgba(13,7,8,.78); color: var(--accent); border: 1px solid var(--accent);
@@ -111,6 +111,8 @@
   .lkf .socials a:hover { border-color: var(--accent); color: var(--accent); }
   .lkf .socials svg { width: 21px; height: 21px; fill: currentColor; }
   .lkf .fine { color: var(--muted); font-size: 13px; }
+
+  .stopcatch { position: absolute; inset: 0; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -165,22 +167,21 @@ var CARDS = [{"i":0,"hash":"87d29c23dba606496c688a80701f02d33fe065912aeb08ce4391
     btn.textContent = "\u25B6 PLAY LOOP";
     btn.setAttribute("aria-label", "Play Tidal Geometries token #" + id + " motion loop");
     btn.addEventListener("click", function () {
-      var vid = document.createElement("video");
-      vid.src = "stills/preview-live/t" + pad(id) + "-720.mp4";
-      vid.poster = img.src;
-      vid.muted = true; vid.loop = true; vid.playsInline = true;
-      vid.style.cursor = "pointer";
-      vid.title = "Click to stop";
-      vid.setAttribute("aria-label", "Stop Tidal Geometries token #" + id + " motion loop");
-      vid.addEventListener("click", function () {
-        vid.pause();
+      var frame = document.createElement("iframe");
+      frame.src = "token.html?hash=" + c.hash;
+      frame.title = "Tidal Geometries token #" + id + " live";
+      var stopper = document.createElement("div");
+      stopper.className = "stopcatch";
+      stopper.title = "Click to stop";
+      stopper.setAttribute("aria-label", "Stop Tidal Geometries token #" + id + " live render");
+      stopper.addEventListener("click", function () {
         wrap.innerHTML = "";
         wrap.appendChild(img);
         wrap.appendChild(btn);
       });
       wrap.innerHTML = "";
-      wrap.appendChild(vid);
-      vid.play();
+      wrap.appendChild(frame);
+      wrap.appendChild(stopper);
     });
     wrap.appendChild(img);
     wrap.appendChild(btn);
