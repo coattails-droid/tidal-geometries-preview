@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="sunlight">
 <head>
+<script>
+  /* Theme is set before first paint: saved choice wins, otherwise Sunlight (the standard). */
+  (function(){try{var t=localStorage.getItem('coattails-theme');document.documentElement.setAttribute('data-theme',t==='warmgray'?'warmgray':'sunlight');}catch(e){document.documentElement.setAttribute('data-theme','sunlight');}})();
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tidal Geometries - Preview</title>
@@ -18,24 +23,45 @@
   gtag('config', 'G-QFQNW5T87Y');
 </script>
 <style>
+  /* Sunlight (default) — the branding guide standard. */
+  :root, :root[data-theme="sunlight"]{
+    --bg:#0d0708; --surface:#0d0708; --ink:#e8e2d4; --muted:#9a937f;
+    --line:#3a362c; --line-dark:#3a362c; --title:#ffc46e; --accent:#ffc46e;
+    --btn-bg:#ffc46e; --btn-ink:#14100a; --btn-hover:#ffa37e; --focus:#ffc46e;
+    --shadow-card:none;
+    --font-display:'DejaVu Sans Mono',Menlo,Consolas,'Courier New',monospace;
+    --font-body:'DejaVu Sans Mono',Menlo,Consolas,'Courier New',monospace;
+  }
+  /* Warm Gray (visitor alternate) — branding guide v1.1 Light theme. */
+  :root[data-theme="warmgray"]{
+    --bg:#E8E4DC; --surface:#F5F2EB; --ink:#111110; --muted:#57534A;
+    --line:#CFC9BB; --line-dark:#111110; --title:#000; --accent:#111110;
+    --btn-bg:#111110; --btn-ink:#F5F2EB; --btn-hover:#26241F; --focus:#111110;
+    --shadow-card:0 20px 38px -24px rgba(30,26,18,.35);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  :root { color-scheme: dark; }
+  :root[data-theme="warmgray"] { color-scheme: light; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0d0708; color: #e8e2d4; font-family: 'DejaVu Sans Mono', Menlo, Consolas, 'Courier New', monospace;
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-body);
          padding: 48px 24px 80px; }
   header { max-width: 1200px; margin: 0 auto 40px; }
-  h1 { font-size: 20px; letter-spacing: 0.35em; font-weight: 600; color: #ffc46e; }
+  h1 { font-size: 20px; letter-spacing: 0.35em; font-weight: 600; color: var(--title); }
   header p { margin-top: 12px; font-size: 16px; line-height: 1.8; letter-spacing: 0.04em;
-             color: #9a937f; max-width: 720px; }
-  header code { color: #ffc46e; font-size: 14px; }
+             color: var(--muted); max-width: 720px; }
+  header code { color: var(--accent); font-size: 14px; }
   .controls { max-width: 1200px; margin: 20px auto; }
   a.mintbtn {
     display: inline-block; margin-top: 20px; padding: 12px 28px;
-    background: transparent; color: #ffc46e; border: 1px solid #ffc46e; border-radius: 0;
+    background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 0;
     font-size: 15px; letter-spacing: 0.2em; font-weight: 600;
     text-decoration: none;
   }
-  a.mintbtn:hover { background: #ffc46e; color: #14100a; }
-  .note { color: #9a937f; font-size: 14px; line-height: 1.8; letter-spacing: 0.04em;
-  .series { color: #9a937f; font-size: 14px; letter-spacing: 0.1em; margin-top: 10px; }
+  a.mintbtn:hover { background:var(--btn-bg); color:var(--btn-ink); }
+  .note { color: var(--muted); font-size: 14px; line-height: 1.8; letter-spacing: 0.04em;
+  .series { color: var(--muted); font-size: 14px; letter-spacing: 0.1em; margin-top: 10px; }
           max-width: 720px; margin: 0; }
   .gallery {
     max-width: 1200px; margin: 0 auto;
@@ -44,27 +70,52 @@
   }
   figure { margin: 0; }
   .gallery video { width: 100%; aspect-ratio: 1; display: block; background: #000;
-                   border: 1px solid #3a362c; }
+                   border: 1px solid var(--line); }
   .playwrap { position: relative; }
   .playwrap img { width: 100%; aspect-ratio: 1; display: block; background: #000;
-                   border: 1px solid #3a362c; }
+                   border: 1px solid var(--line); }
   .playbtn { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
-    background: rgba(13,7,8,.78); color: #ffc46e; border: 1px solid #ffc46e;
+    background: rgba(13,7,8,.78); color: var(--accent); border: 1px solid var(--accent);
     padding: 8px 18px; font: inherit; font-size: 13px; letter-spacing: .14em; cursor: pointer; }
-  .playbtn:hover { background: #ffc46e; color: #14100a; }
-  figcaption { font-size: 14px; color: #9a937f; line-height: 1.8; letter-spacing: 0.04em;
+  .playbtn:hover { background:var(--btn-bg); color:var(--btn-ink); }
+  figcaption { font-size: 14px; color: var(--muted); line-height: 1.8; letter-spacing: 0.04em;
                margin-top: 10px; }
-  figcaption strong { color: #e8e2d4; }
-  figcaption code { color: #ffc46e; font-size: 13px; }
-  figcaption .rarity { color: #ffc46e; }
+  figcaption strong { color: var(--ink); }
+  figcaption code { color: var(--accent); font-size: 13px; }
+  figcaption .rarity { color: var(--accent); }
   footer { max-width: 1200px; margin: 56px auto 0; font-size: 13px;
-           letter-spacing: 0.1em; color: #9a937f; }
+           letter-spacing: 0.1em; color: var(--muted); }
+
+  /* ---------- theme toggle (guide v1.1) ---------- */
+  .topbar{display:flex;justify-content:flex-end;max-width:1200px;margin:0 auto;padding:0 0 18px;}
+  .theme-toggle{display:inline-flex;border:1.5px solid var(--line-dark);border-radius:999px;
+    overflow:hidden;background:var(--surface);}
+  .theme-toggle button{appearance:none;-webkit-appearance:none;border:0;background:transparent;
+    color:var(--muted);font-family:var(--font-body);font-size:12px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;padding:9px 18px;cursor:pointer;
+    transition:background .2s ease,color .2s ease;}
+  .theme-toggle button[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-ink)}
+  .theme-toggle button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  /* ---------- centered content ---------- */
+  header{text-align:center}
+  header p{margin-left:auto;margin-right:auto}
+  .note{margin:0 auto}
+  .controls{text-align:center}
+  figcaption{text-align:center}
+  h1{font-family:var(--font-display)}
+  footer{text-align:center}
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="theme-toggle" role="group" aria-label="Theme">
+    <button type="button" data-set-theme="sunlight" aria-pressed="true">Dark</button>
+    <button type="button" data-set-theme="warmgray" aria-pressed="false">Light</button>
+  </div>
+</div>
 <header>
   <h1>TIDAL GEOMETRIES</h1>
-  <p class="series">Series 2 &middot; <a href="https://artist.coattails.eth.limo/" style="color:#ffc46e;text-decoration:none">CALVIN FOUGHT (COATTAILS)</a></p>
+  <p class="series">Series 2 &middot; <a href="https://artist.coattails.eth.limo/" style="color:var(--accent);text-decoration:none">CALVIN FOUGHT (COATTAILS)</a></p>
   <p>
     A sibling series to Seeded Geometries. Two ring centers per piece, every
     ring welded exactly to the square grid — one fused lattice that breathes.
@@ -129,6 +180,26 @@ var CARDS = [{"i":0,"hash":"87d29c23dba606496c688a80701f02d33fe065912aeb08ce4391
   }
   for (var i = 0; i < CARDS.length; i++) addPiece(i);
 })();
+</script>
+<script>
+  /* Theme toggle wiring (guide v1.1): sync pressed state, save the choice. */
+  (function(){
+    var root=document.documentElement;
+    var btns=document.querySelectorAll('[data-set-theme]');
+    function sync(){
+      var t=root.getAttribute('data-theme')||'sunlight';
+      btns.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-set-theme')===t?'true':'false');});
+    }
+    btns.forEach(function(b){
+      b.addEventListener('click',function(){
+        var t=b.getAttribute('data-set-theme');
+        root.setAttribute('data-theme',t);
+        try{localStorage.setItem('coattails-theme',t);}catch(e){}
+        sync();
+      });
+    });
+    sync();
+  })();
 </script>
 </body>
 </html>
